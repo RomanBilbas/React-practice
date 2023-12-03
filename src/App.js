@@ -1,15 +1,7 @@
 import "./App.css";
-import Header from "./components/Header";
-
+import User from "./components/User";
 function App() {
-  const isLogin = true;
-
-  const navList = [
-    { aTitle: "Home", src: "#" },
-    { aTitle: "About", src: "#" },
-  ];
-
-  return <Header isLogin={isLogin} navList={navList} />;
+  return <User />;
 }
 
 export default App;
