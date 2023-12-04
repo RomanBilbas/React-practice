@@ -1,7 +1,8 @@
-import "./App.css";
-import User from "./components/User";
+// import styles from "./App.module.css";
+import UsersList from "./components/UsersList";
+
 function App() {
-  return <User />;
+  return <UsersList />;
 }
 
 export default App;

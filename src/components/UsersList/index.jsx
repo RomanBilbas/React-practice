@@ -1,14 +1,16 @@
 import { useState } from "react";
-import styles from "./User.module.css";
+import { FaTrash } from "react-icons/fa6";
 
-const users = [
+const usersDb = [
   {
+    id: 1,
     firstName: "Test1",
     lastName: "Testovich1",
     age: 28,
     photoSrc: "https://sigc.edu/sigc/ad-sigc/datas/images/userimg.jpg",
   },
   {
+    id: 2,
     firstName: "Test2",
     lastName: "Testovich2",
     age: 31,
@@ -16,6 +18,7 @@ const users = [
       "https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
+    id: 3,
     firstName: "Test3",
     lastName: "Testovich3",
     age: 70,
@@ -23,6 +26,7 @@ const users = [
       "https://images.pexels.com/photos/573299/pexels-photo-573299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
+    id: 4,
     firstName: "Test4",
     lastName: "Testovich4",
     age: 20,
@@ -30,6 +34,7 @@ const users = [
       "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
   {
+    id: 5,
     firstName: "Test5",
     lastName: "Testovich5",
     age: 28,
@@ -38,45 +43,35 @@ const users = [
   },
 ];
 
-function User(props) {
-  const { isLight } = props;
-  const [currentIndex, setCurrentIndex] = useState(0);
+function UsersList() {
+  const [users, setUsers] = useState(usersDb);
 
-  function next() {
-    setCurrentIndex((currentIndex + 1) % users.length);
+  function removeUser(index) {
+    const usersCopy = [...users];
+    usersCopy.splice(index, 1);
+    setUsers(usersCopy);
   }
 
-  function prev() {
-    setCurrentIndex((currentIndex - 1 + users.length) % users.length);
-  }
-
-  const { photoSrc, firstName, lastName, age } = users[currentIndex];
-
-  const buttonStyle = {
-    border: `1px solid ${isLight ? "black" : "white"}`,
-    backgroundColor: isLight ? "white" : "black",
-    color: isLight ? "black" : "white",
-  };
-
-  return (
-    <>
-      <article className={styles.userCard}>
-        <img src={photoSrc} alt={`${firstName} ${lastName}`} />
+  function mapUsers(u, index) {
+    return (
+      <li key={u.id}>
+        <img
+          width="50px"
+          height="50px"
+          src={u.photoSrc}
+          alt={`${u.firstName} ${u.lastName}`}
+        />
+        <button onClick={() => removeUser(index)}>
+          <FaTrash />
+        </button>
         <p>
-          {firstName} {lastName}
+          {u.firstName} {u.lastName} {u.age}
         </p>
-        <p>{age}</p>
-      </article>
-      <div className={styles.buttonContainer}>
-        <button style={buttonStyle} onClick={prev}>
-          {"<"}
-        </button>
-        <button style={buttonStyle} onClick={next}>
-          {">"}
-        </button>
-      </div>
-    </>
-  );
+      </li>
+    );
+  }
+
+  return <ul>{users.map(mapUsers)}</ul>;
 }
 
-export default User;
+export default UsersList;
