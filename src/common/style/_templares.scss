@@ -1,0 +1,10 @@
+%flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-container($jc: center, $ai: center) {
+  display: flex;
+  justify-content: $js;
+  align-items: $ai;
+}

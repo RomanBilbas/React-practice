@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaTrash } from "react-icons/fa6";
+import UsersListItem from "./UsersListItem";
 
 const usersDb = [
   {
@@ -54,24 +54,16 @@ function UsersList() {
 
   function mapUsers(u, index) {
     return (
-      <li key={u.id}>
-        <img
-          width="50px"
-          height="50px"
-          src={u.photoSrc}
-          alt={`${u.firstName} ${u.lastName}`}
-        />
-        <button onClick={() => removeUser(index)}>
-          <FaTrash />
-        </button>
-        <p>
-          {u.firstName} {u.lastName} {u.age}
-        </p>
-      </li>
+      <UsersListItem
+        key={u.id}
+        user={u}
+        index={index}
+        removeUser={removeUser}
+      />
     );
   }
 
-  return <ul>{users.map(mapUsers)}</ul>;
+  return <ul className={userList}>{users.map(mapUsers)}</ul>;
 }
 
 export default UsersList;

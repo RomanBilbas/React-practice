@@ -1,8 +1,10 @@
-// import styles from "./App.module.css";
-import UsersList from "./components/UsersList";
-
+import UserForm from "./components/UserForm";
 function App() {
-  return <UsersList />;
+  return (
+    <>
+      <UserForm />
+    </>
+  );
 }
 
 export default App;

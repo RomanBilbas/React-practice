@@ -1,3 +1,16 @@
-.container {
-  min-height: 100vh;
+.pageContainer {
+  height: 100vh;
+}
+
+.light {
+  color: black;
+  background-color: white;
+}
+.dark {
+  color: white;
+  background-color: black;
+}
+.purple {
+  color: blueviolet;
+  background-color: lightpink;
 }
